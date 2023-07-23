@@ -4,8 +4,8 @@ import { Admins } from "./collections/Admins";
 import { Users } from "./collections/Users";
 import { Examples } from "./collections/Examples";
 
-const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL || "";
-const clientURL = process.env.PAYLOAD_PUBLIC_SITE_URL || "";
+const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL;
+const clientURL = process.env.PAYLOAD_PUBLIC_SITE_URL;
 
 console.log("whitelist", [serverURL, clientURL]);
 
