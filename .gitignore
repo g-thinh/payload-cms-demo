@@ -1,4 +1,8 @@
 ### Node ###
+
+# Build
+build
+
 # Logs
 logs
 *.log
