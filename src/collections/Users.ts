@@ -14,6 +14,10 @@ export const Users: CollectionConfig = {
     verify: false,
     maxLoginAttempts: 5,
     lockTime: 600 * 1000,
+    cookies: {
+      secure: true,
+      sameSite: "none",
+    },
   },
   access: {
     read: isAdminOrUser,
