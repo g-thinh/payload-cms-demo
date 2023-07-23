@@ -1,17 +1,18 @@
-import { CollectionConfig } from 'payload/types';
+import { CollectionConfig } from "payload/types";
+import { isAdmin } from "../access/isAdmin";
+import { isAuthenticated } from "../access/isAuthenticated";
 
-// Example Collection - For reference only, this must be added to payload.config.ts to be used.
-const Examples: CollectionConfig = {
-  slug: 'examples',
-  admin: {
-    useAsTitle: 'someField',
+/**
+ * An Example is a collection of documents that is accessible to any authenticated users
+ * but can only be modified by Admins.
+ */
+export const Examples: CollectionConfig = {
+  slug: "examples",
+  access: {
+    read: isAuthenticated,
+    delete: isAdmin,
+    update: isAdmin,
+    create: isAdmin,
   },
-  fields: [
-    {
-      name: 'someField',
-      type: 'text',
-    },
-  ],
-}
-
-export default Examples;
+  fields: [{ name: "name", type: "text" }],
+};

@@ -1,18 +1,31 @@
-import { CollectionConfig } from 'payload/types';
+import { CollectionConfig } from "payload/types";
+import { isAdminOrUser } from "../access/isAdminOrUser";
 
-const Users: CollectionConfig = {
-  slug: 'users',
-  auth: true,
+/**
+ * A User is an authenticated collection of users that can access most collections.
+ */
+export const Users: CollectionConfig = {
+  slug: "users",
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: "name",
+  },
+  auth: {
+    tokenExpiration: 7200,
+    verify: false,
+    maxLoginAttempts: 5,
+    lockTime: 600 * 1000,
   },
   access: {
-    read: () => true,
+    read: isAdminOrUser,
+    update: isAdminOrUser,
+    create: () => true,
+    delete: isAdminOrUser,
   },
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: "name",
+      type: "text",
+      saveToJWT: true,
+    },
   ],
 };
-
-export default Users;
