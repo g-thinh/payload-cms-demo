@@ -16,7 +16,8 @@ export const Users: CollectionConfig = {
     lockTime: 600 * 1000,
     cookies: {
       secure: true,
-      sameSite: "none",
+      sameSite: "strict",
+      domain: process.env.COOKIE_DOMAIN,
     },
   },
   access: {
